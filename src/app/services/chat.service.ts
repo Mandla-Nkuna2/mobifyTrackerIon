@@ -14,7 +14,7 @@ export interface Message {
   createdAt: firebase.default.firestore.FieldValue
   id: string;
   from: string;
-  msg: string;
+  msg: 'lol';
   fromName: string;
   myMsg: boolean
 }
@@ -51,7 +51,7 @@ export class ChatService {
    }
 
    addChatMessage(msg) {
-     return this.afs.collection('message').add({
+     return this.afs.collection('messages').add({
        msg, 
        from: this.currentUser.uid,
        createdAt: firebase.default.firestore.FieldValue.serverTimestamp()
@@ -65,7 +65,7 @@ export class ChatService {
        switchMap(res => {
          users = res;
          console.log('all users: ', users);
-         return this.afs.collection('messages', ref => ref.orderBy('createdAt')).valueChanges({idField: 'id'}) as Observable<Message[]>
+         return this.afs.collection('messages', ref => ref.orderBy('createdAt')).valueChanges({idField: 'id'}) as Observable<any[]>
        }),
        map(messages => {
          for (let m of messages) {

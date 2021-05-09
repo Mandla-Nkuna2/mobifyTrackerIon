@@ -11,26 +11,26 @@ import { ChatService, Message } from 'src/app/services/chat.service';
 })
 export class ChatPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
-
-  messages: Observable<Message[]>
+ 
+  messages: Observable<any[]>;
   newMsg = '';
-
+ 
   constructor(private chatService: ChatService, private router: Router) { }
-
+ 
   ngOnInit() {
     this.messages = this.chatService.getChatMessages();
   }
-
-  sendMessage(){
+ 
+  sendMessage() {
     this.chatService.addChatMessage(this.newMsg).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
-    })
+    });
   }
-
+ 
   signOut() {
     this.chatService.signOut().then(() => {
-      this.router.navigateByUrl('/', {replaceUrl: true})
-    })
+      this.router.navigateByUrl('/', { replaceUrl: true });
+    });
   }
 }
