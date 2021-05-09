@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angularchatapp-7e281": {
+      "hosting": {
+        "app": [
+          "angularchatapp-7e281"
+        ]
+      }
+    }
+  }
+}
